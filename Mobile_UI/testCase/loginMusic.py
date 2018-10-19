@@ -38,6 +38,8 @@ class loginMusic(webDriver, unittest.TestCase):
             #开始按钮
             login_Page.click_login(self.driver)
             time.sleep(2)
+            #点击开始按钮后进行截屏
+            common.Screenshot1(self.driver)
             #判定是否拉取到音乐类型的后台数据,如果拉取到就进行选择,否则直接点击下一步
             if login_Page.is_Type(self.driver):
                 # 音乐类型选择
@@ -59,6 +61,8 @@ class loginMusic(webDriver, unittest.TestCase):
                 time.sleep(5)
         #向上滑动,n:滑动次数
         common.swipeUp(self.driver,1)
+        #滑动首页后进行截屏
+        common.Screenshot1(self.driver)
         #首页点击进入播放列表页
         time.sleep(2)
         home_Page.click_list(self.driver)
@@ -66,8 +70,11 @@ class loginMusic(webDriver, unittest.TestCase):
         home_Page.click_paly(self.driver)
         #判断是否有系统权限弹窗
         if home_Page.sys_playPermiss(self.driver):
+
             #播放权限框
             home_Page.click_pop(self.driver)
+            #播放系统权限界面的截屏
+            common.Screenshot1(self.driver)
             #打开music的权限框
             home_Page.open_playPermiss(self.driver)
             # 点击手机返回键,返回程序播放界面
@@ -75,6 +82,9 @@ class loginMusic(webDriver, unittest.TestCase):
         # 点击手机返回键,返回程序主界面
         time.sleep(1)
         home_Page.click_back(self.driver)
+        time.sleep(2)
+        #返回主界面的截屏
+        common.Screenshot1(self.driver)
         self.assertEqual(True, self.excepted)
 
         #正常登陆的测试用例

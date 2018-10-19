@@ -53,22 +53,15 @@ def isElementExist(flag,driver,xpath):
         return isExist
 '''
 Screenshot function
-imPath:picture save path
-imType: picture type
 '''
-def Screenshot(imPath,imType):
-    im = ImageGrab.grab()
-    im.save(imPath, imType)
-
-def Screenshot1():
+def Screenshot1(driver):
     rq = time.strftime('%Y-%m-%d_%H_%M_%S', time.localtime(time.time()))
     # log文件的存放路径
     imPath = filePath + '/result/image/' + rq + '.png'
-    im = ImageGrab.grab()
-    im.save(imPath)
-def Screenshot2(imPath):
-    im = ImageGrab.grab()
-    im.save(imPath)
+    driver.get_screenshot_as_file(imPath)
+
+def Screenshot2(driver,imPath):
+    driver.get_screenshot_as_file(imPath)
 '''
 Delete folder content
 path: folder path
@@ -108,7 +101,15 @@ def swipeUp(driver,n):
     y1 = int(W_size[1]*0.75)
     y2 = int(W_size[1]*0.25)
     for i in range(n):
-        myLog.logger().info('滑动次数' + str(i+1))
+        driver.swipe(x1, y1, x1, y2)
+#swipe up Screen
+#Small slip range
+def swipeUp1(driver,n):
+    W_size = getScreenSize(driver)
+    x1 = int(W_size[0]*0.5)
+    y1 = int(W_size[1]*0.5)
+    y2 = int(W_size[1]*0.2)
+    for i in range(n):
         driver.swipe(x1, y1, x1, y2)
 #swipe down Screen
 def swipeDown(driver,n):

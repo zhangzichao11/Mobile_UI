@@ -37,10 +37,33 @@ def click_back(driver):
     driver.keyevent(4)
 #点击首页Home菜单
 def click_home(driver):
-    driver.find_element_by_name('Home').click()
+    driver.find_element_by_id('navigation_home').click()
 #点击首页Search菜单
 def click_search(driver):
     driver.find_element_by_id('navigation_search').click()
 #点击搜索框
 def click_searchbg(driver):
     driver.find_element_by_id('search_recommend_top_edit_bg').click()
+#搜索输入框
+def search_input(driver,text):
+    driver.find_element_by_id('search_edit').send_keys(text)
+#点击youtube进行搜索
+def click_youtube(driver):
+    driver.find_element_by_id('search_from_youtube_layout').click()
+#点击要查找的视频,进行播放
+def click_video(driver):
+    driver.find_element_by_xpath("//*[@text='Phone Call']").click()
+#获取视频上面的分钟数
+def get_time(driver):
+
+    strTime = driver.find_element_by_id('tv_total_time').text
+    minute=int(strTime.split(':')[0][1])
+    second = int(strTime.split(':')[1])
+    if minute > 0:
+        minute = 60*minute
+    if second >= 0:
+        second = minute + second
+    else:
+        second = second[1]
+        second = minute + second
+    return second-10
