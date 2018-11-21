@@ -1,0 +1,1 @@
+@py.exe F:\project\myDB\myCmd.py %*
